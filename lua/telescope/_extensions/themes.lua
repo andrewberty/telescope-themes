@@ -25,7 +25,8 @@ local function switcher()
 
   local function write_config()
     local selected = action_state.get_selected_entry()[1]
-    file = io.open('config/current-theme.lua', "w")
+    local theme_path = vim.fn.stdpath "config" .. "/current-theme.lua"
+    file = io.open(theme_path, "w")
     file:write('vim.cmd(colorscheme' .. selected .. ')')
     file:close()
   end
