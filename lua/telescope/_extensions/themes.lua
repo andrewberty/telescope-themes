@@ -35,7 +35,7 @@ local function switcher()
 
 
   local picker_opts = {
-    prompt_title = "Colorschemes",
+    prompt_title = "Themes",
     -- previewer = previewer,
     finder = finders.new_table(colors),
     sorter = sorters.get_generic_fuzzy_sorter({}),
