@@ -48,3 +48,7 @@ or map it to a key
 ```lua
 vim.keymap.set("n", "<leader>th", ":Telescope themes<CR>", {noremap = true, silent = true})
 ```
+
+After first theme selection, a file named **current-theme.lua** will be generated in root of /lua directory, it contains the command responsible for persisting latest theme selection on every startup.
+
+Now you have to require **current-theme.lua** in your init.lua
