@@ -23,6 +23,13 @@ local function switcher()
     vim.cmd(cmd)
   end
 
+  local function write_config()
+    local selected = action_state.get_selected_entry()[1]
+    file = io.open('config/current-theme.lua', "w")
+    file:write('vim.cmd(colorscheme' .. selected .. ')')
+    file:close()
+  end
+
   local colors = vim.fn.getcompletion('', 'color')
 
 
@@ -37,6 +44,7 @@ local function switcher()
     attach_mappings = function(prompt_bufnr, map)
       map('i', '<CR>', function()
         set_theme()
+        write_config()
         actions.close(prompt_bufnr)
       end)
 
