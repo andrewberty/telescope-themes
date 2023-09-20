@@ -53,6 +53,7 @@ vim.keymap.set("n", "<leader>th", ":Telescope themes<CR>", {noremap = true, sile
 As the extension is writing the colorscheme command in your config, and neovim configs are very indvidual and unique, I wouldn't be able to predict which part to manipulate,
 so the extension creates a file named **current-theme.lua** will be generated in root of /lua directory, it contains the command responsible for persisting latest theme selection, and it's overwritten by the extension on every new selection.
 
+Now you have to require **current-theme.lua** in your init.lua
 
 ### Credits
 - It is inspired by [NvChad's](https://github.com/NvChad/NvChad) theme switcher, but written to work with any configuration.
