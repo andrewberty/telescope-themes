@@ -6,7 +6,7 @@ An extension for Telescope plugin to switch colorschemes with preview. It will r
 
 ## Installation
 
-1. Plugins config file
+Plugins config file
 
 Using [packer.nvim](https://github.com/wbthomason/packer.nvim) or [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -19,7 +19,9 @@ use {
 }
 ```
 
-2. As a dependancy in telescope config file (example in lazy.nvim)
+*OR*
+
+As a dependancy in telescope config file (example in lazy.nvim)
 
 ```lua
 {
