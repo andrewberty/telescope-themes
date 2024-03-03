@@ -27,8 +27,9 @@ end
 
 -- Write config to `current-theme.lua` to persist theme
 local write_config = function()
+	local path = themes.config.persist.path
 	local selected = action_state.get_selected_entry()[1]
-	local file = io.open(vim.fn.stdpath("config") .. "/lua/current-theme.lua", "w")
+	local file = io.open(path, "w")
 
 	if file ~= nil then
 		file:write('vim.cmd("colorscheme ' .. selected .. '")')
@@ -67,7 +68,9 @@ themes.switcher = function(func_opts)
 		attach_mappings = function(prompt_bufnr, map)
 			map("i", "<CR>", function()
 				set_theme()
-				write_config()
+				if themes.config.persist.enabled then
+					write_config()
+				end
 				actions.close(prompt_bufnr)
 			end)
 			map("i", "<Down>", function()

@@ -26,6 +26,10 @@ M.default_config = {
 	},
 	enable_live_preview = true,
 	enable_previewer = true,
+	persist = {
+		enabled = true,
+		path = vim.fn.stdpath("config") .. "/lua/current-theme.lua",
+	},
 }
 
 return M
