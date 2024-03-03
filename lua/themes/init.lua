@@ -58,7 +58,7 @@ local get_previewer = function()
 end
 
 -- Picker
-themes.switcher = function()
+themes.switcher = function(func_opts)
 	local picker_opts = {
 		prompt_title = "Themes",
 		previewer = get_previewer(),
@@ -87,7 +87,8 @@ themes.switcher = function()
 	}
 
 	-- Merge picker opts with all config
-	local opts = vim.tbl_deep_extend("force", themes.config, picker_opts)
+	local temp_opts = vim.tbl_deep_extend("force", themes.config, picker_opts)
+	local opts = vim.tbl_deep_extend("force", temp_opts, func_opts)
 
 	pickers.new(opts):find()
 end
