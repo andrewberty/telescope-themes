@@ -81,6 +81,12 @@ NOTE: All configurations should go under `extensions` table in telescope config 
                 ignore = { "default", "desert", "elflord", "habamax" },
                 -- (table) -> provide table of theme names to ignore
                 -- all builtin themes are ignored by default
+                persist = {
+                    enabled = true, -- enable persisting last theme choice
+
+                    -- override path to file that execute colorscheme command
+                    path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua" 
+                }
             },
         },
     },
@@ -93,6 +99,7 @@ NOTE: All configurations should go under `extensions` table in telescope config 
 |`enable_previewer`|`boolean`|Show / Hide previewer window
 |`enable_live_preview`|`boolean`|Enable / Disable live preview
 |`ignore`|`table` of themes names|Ignore specific themes from appearing in the list
+|`persist`|`{ enabled: boolean, path: string}`| - Enable / Disable persisting last theme choice,<br> - Override file path to write your colorscheme command <br> **`WARNING: THIS MUST BE AN EMPTY FILE AS IT WILL BE COMPLETELY OVERWRITTEN`** <br>Default file path : `{root_nvim_config}/lua/current-theme.lua`
 
 
 ### IMPORTANT
