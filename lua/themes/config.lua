@@ -3,6 +3,11 @@ local M = {}
 M.default_config = {
 	ignore = {
 		"default",
+		"vim",
+		"retrobox",
+		"sorbet",
+		"wildcharm",
+		"zaibatsu",
 		"desert",
 		"evening",
 		"industry",
