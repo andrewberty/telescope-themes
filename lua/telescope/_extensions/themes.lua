@@ -21,4 +21,5 @@ return telescope.register_extension({
 		end
 	end,
 	exports = { themes = themes.switcher },
+	builtin_schemes = config.builtin_schemes,
 })
