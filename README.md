@@ -66,7 +66,7 @@ _Example Configuration ( NOT DEFAULT ):_
         -- other dependencies
         },
     config = function ()
-        -- get builtin schemes table
+        -- get builtin schemes list
         local builtin_schemes = require("telescope._extensions.themes").builtin_schemes
 
         require("telescope").setup({
@@ -80,7 +80,7 @@ _Example Configuration ( NOT DEFAULT ):_
                             height = 0.7,
                         },
                     },
-                    
+
                     -- extension specific config
 
                     -- (boolean) -> show/hide previewer window
@@ -88,18 +88,18 @@ _Example Configuration ( NOT DEFAULT ):_
 
                     -- (boolean) -> enable/disable live preview
                     enable_live_preview = false,
-                    
+
                     -- all builtin themes are ignored by default
-                    -- (table) -> provide table of theme names to overwrite builtins table
+                    -- (list) -> provide table of theme names to overwrite builtins list
                     ignore = { "default", "desert", "elflord", "habamax" },
                     -- OR
-                    -- extend the required `builtin_schemes` table to ignore other
+                    -- extend the required `builtin_schemes` list to ignore other
                     -- schemes in addition to builtin schemes
-                    ignore = vim.tbl_deep_extend("force", builtin_schemes, { "embark" }),
+                    ignore = vim.list_extend(builtin_schemes, { "embark" }),
 
                     persist = {
                         -- enable persisting last theme choice
-                        enabled = true, 
+                        enabled = true,
 
                         -- override path to file that execute colorscheme command
                         path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua"
@@ -117,7 +117,7 @@ _Example Configuration ( NOT DEFAULT ):_
 | :-------------------: | :---------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |  `enable_previewer`   |              `boolean`              |                                                                                                                    Show / Hide previewer window                                                                                                                    |
 | `enable_live_preview` |              `boolean`              |                                                                                                                   Enable / Disable live preview                                                                                                                    |
-|       `ignore`        |       `table` of themes names       |                                                                                                         Ignore specific themes from appearing in the list                                                                                                          |
+|       `ignore`        |       `list` of themes names        |                                                                                                         Ignore specific themes from appearing in the list                                                                                                          |
 |       `persist`       | `{ enabled: boolean, path: string}` | - Enable / Disable persisting last theme choice,<br> - Override file path to write your colorscheme command <br> **`WARNING: THIS MUST BE AN EMPTY FILE AS IT WILL BE COMPLETELY OVERWRITTEN`** <br>Default file path : `{root_nvim_config}/lua/current-theme.lua` |
 
 ### IMPORTANT
