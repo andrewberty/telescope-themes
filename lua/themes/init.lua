@@ -60,6 +60,8 @@ end
 
 -- Picker
 themes.switcher = function(func_opts)
+	local old_theme = vim.g.colors_name
+
 	local picker_opts = {
 		prompt_title = "Themes",
 		previewer = get_previewer(),
@@ -85,6 +87,15 @@ themes.switcher = function(func_opts)
 					set_theme()
 				end
 			end)
+			map("i", "<ESC>", function()
+				vim.cmd("colorscheme " .. old_theme)
+				actions.close(prompt_bufnr)
+			end)
+			map("n", "q", function()
+				vim.cmd("colorscheme " .. old_theme)
+				actions.close(prompt_bufnr)
+			end)
+
 			return true
 		end,
 	}
@@ -92,8 +103,9 @@ themes.switcher = function(func_opts)
 	-- Merge picker opts with all config
 	local temp_opts = vim.tbl_deep_extend("force", themes.config, picker_opts)
 	local opts = vim.tbl_deep_extend("force", temp_opts, func_opts)
+	local picker = pickers.new(opts)
 
-	pickers.new(opts):find()
+	picker:find()
 end
 
 return themes
