@@ -68,26 +68,30 @@ themes.switcher = function(func_opts)
 		finder = finders.new_table(filtered_colors()),
 		sorter = sorters.get_generic_fuzzy_sorter(themes.config),
 		attach_mappings = function(prompt_bufnr, map)
-			map("i", "<CR>", function()
+			map("i", themes.config.mappings.accept, function()
 				set_theme()
 				if themes.config.persist.enabled then
 					write_config()
 				end
 				actions.close(prompt_bufnr)
 			end)
-			map("i", "<Down>", function()
+			map("i", themes.config.mappings.down, function()
 				actions.move_selection_next(prompt_bufnr)
 				if themes.config.enable_live_preview == true then
 					set_theme()
 				end
 			end)
-			map("i", "<Up>", function()
+			map("i", themes.config.mappings.up, function()
 				actions.move_selection_previous(prompt_bufnr)
 				if themes.config.enable_live_preview == true then
 					set_theme()
 				end
 			end)
 			map("i", "<ESC>", function()
+				vim.cmd("colorscheme " .. old_theme)
+				actions.close(prompt_bufnr)
+			end)
+			map("i", "<C-c>", function()
 				vim.cmd("colorscheme " .. old_theme)
 				actions.close(prompt_bufnr)
 			end)
