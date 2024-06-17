@@ -103,7 +103,13 @@ _Example Configuration ( NOT DEFAULT ):_
 
                         -- override path to file that execute colorscheme command
                         path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua"
-                    }
+                    },
+                    mappings = {
+                        -- for people used to other mappings
+                        down = "<C-n>",
+                        up = "<C-p>",
+                        accept = "<C-y>",
+                    },
                 },
             },
         })
@@ -119,7 +125,7 @@ _Example Configuration ( NOT DEFAULT ):_
 | `enable_live_preview` |              `boolean`              |                                                                                                                   Enable / Disable live preview                                                                                                                    |
 |       `ignore`        |       `list` of themes names        |                                                                                                         Ignore specific themes from appearing in the list                                                                                                          |
 |       `persist`       | `{ enabled: boolean, path: string}` | - Enable / Disable persisting last theme choice,<br> - Override file path to write your colorscheme command <br> **`WARNING: THIS MUST BE AN EMPTY FILE AS IT WILL BE COMPLETELY OVERWRITTEN`** <br>Default file path : `{root_nvim_config}/lua/current-theme.lua` |
-
+|      `mappings`       | `{down: string, up: string, accept: string}` |                                                                - custom mapping for navigatting inside telescope dropdown with preview <br>Default: <br>`{down = <Down>, up = <Up>, accept = <CR>}`                                                                |
 ### IMPORTANT
 
 As the extension is writing the colorscheme command in your config, and neovim configs are very indvidual and unique, I wouldn't be able to predict which part to manipulate,
