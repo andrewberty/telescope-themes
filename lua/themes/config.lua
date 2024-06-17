@@ -37,6 +37,11 @@ M.default_config = {
 		enabled = true,
 		path = vim.fn.stdpath("config") .. "/lua/current-theme.lua",
 	},
+	mappings = {
+		down = "<Down>",
+		up = "<Up>",
+		accept = "<CR>",
+	},
 }
 
 return M
