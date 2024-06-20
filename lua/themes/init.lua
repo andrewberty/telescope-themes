@@ -29,12 +29,10 @@ end
 local write_config = function()
 	local path = themes.config.persist.path
 	local selected = action_state.get_selected_entry()[1]
-	local file = io.open(path, "w")
+	local file = assert(io.open(path, "w"))
 
-	if file ~= nil then
-		file:write('vim.cmd("colorscheme ' .. selected .. '")')
-		file:close()
-	end
+	file:write('vim.cmd("colorscheme ' .. selected .. '")')
+	file:close()
 end
 
 -- Provide buffer previewer with syntax highlighting
@@ -60,7 +58,7 @@ end
 
 -- Picker
 themes.switcher = function(func_opts)
-	local old_theme = vim.g.colors_name
+	local old_theme = vim.g.colors_name or "default"
 
 	local picker_opts = {
 		prompt_title = "Themes",
@@ -95,11 +93,6 @@ themes.switcher = function(func_opts)
 				vim.cmd("colorscheme " .. old_theme)
 				actions.close(prompt_bufnr)
 			end)
-			map("n", "q", function()
-				vim.cmd("colorscheme " .. old_theme)
-				actions.close(prompt_bufnr)
-			end)
-
 			return true
 		end,
 	}
