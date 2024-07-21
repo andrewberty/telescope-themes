@@ -79,7 +79,19 @@ themes.switcher = function(func_opts)
 					set_theme()
 				end
 			end)
+			map("i", "<Tab>", function()
+				actions.move_selection_next(prompt_bufnr)
+				if themes.config.enable_live_preview == true then
+					set_theme()
+				end
+			end)
 			map("i", themes.config.mappings.up, function()
+				actions.move_selection_previous(prompt_bufnr)
+				if themes.config.enable_live_preview == true then
+					set_theme()
+				end
+			end)
+			map("i", "<S-Tab>", function()
 				actions.move_selection_previous(prompt_bufnr)
 				if themes.config.enable_live_preview == true then
 					set_theme()
