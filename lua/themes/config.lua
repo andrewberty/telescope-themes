@@ -28,9 +28,19 @@ M.builtin_schemes = {
 	"habamax",
 	"lunaperche",
 }
+M.light_keywords = { "light", "day" }
+M.dark_keywords = { "black", "night", "dark" }
 
 M.default_config = {
 	ignore = M.builtin_schemes,
+	light_themes = {
+		ignore = false,
+		keywords = M.light_keywords,
+	},
+	dark_themes = {
+		ignore = false,
+		keywords = M.dark_keywords,
+	},
 	enable_live_preview = true,
 	enable_previewer = true,
 	persist = {

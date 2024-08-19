@@ -7,22 +7,68 @@ local action_state = require("telescope.actions.state")
 
 local themes = {}
 
--- Filter installed themes if `ignore` table provided
-local filtered_colors = function()
-	local installed_themes = vim.fn.getcompletion("", "color", true)
-	local ignore_table = themes.config.ignore or {}
+local set_theme = function()
+	vim.cmd("colorscheme " .. action_state.get_selected_entry()[1])
+end
+
+local getAllThemes = function()
+	return vim.fn.getcompletion("", "color", true)
+end
+
+-- filter according keywords
+local isInKeywords = function(theme, keywords)
+	for _, keyword in ipairs(keywords) do
+		if string.find(theme, keyword) then
+			return true
+		end
+	end
+	return false
+end
+
+local light_themes = function()
 	local filtered = {}
-	for _, theme in ipairs(installed_themes) do
-		if not vim.tbl_contains(ignore_table, theme) then
+	for _, theme in ipairs(getAllThemes()) do
+		if isInKeywords(theme, themes.config.light_themes.keywords) then
 			table.insert(filtered, theme)
 		end
 	end
 	return filtered
 end
 
--- Set theme temporarily for live preview
-local set_theme = function()
-	vim.cmd("colorscheme " .. action_state.get_selected_entry()[1])
+local dark_themes = function()
+	local filtered = {}
+	for _, theme in ipairs(getAllThemes()) do
+		if isInKeywords(theme, themes.config.dark_themes.keywords) then
+			table.insert(filtered, theme)
+		end
+	end
+	return filtered
+end
+
+-- Filter installed themes from ignored themes
+local filtered_colors = function()
+	local ignore_table = {}
+
+	if themes.config.ignore then
+		vim.list_extend(ignore_table, themes.config.ignore)
+	end
+
+	if themes.config.light_themes and themes.config.light_themes.ignore then
+		vim.list_extend(ignore_table, light_themes())
+	end
+
+	if themes.config.dark_themes and themes.config.dark_themes.ignore then
+		vim.list_extend(ignore_table, dark_themes())
+	end
+
+	local filtered = {}
+	for _, theme in ipairs(getAllThemes()) do
+		if not vim.tbl_contains(ignore_table, theme) then
+			table.insert(filtered, theme)
+		end
+	end
+
+	return filtered
 end
 
 -- Write config to `current-theme.lua` to persist theme

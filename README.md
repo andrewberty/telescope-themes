@@ -97,6 +97,22 @@ _Example Configuration ( NOT DEFAULT ):_
                     -- schemes in addition to builtin schemes
                     ignore = vim.list_extend(builtin_schemes, { "embark" }),
 
+                    -- (table)
+                    -- (boolean) ignore -> toggle ignore light themes
+                    -- (list) keywords -> list of keywords that would identify as light theme
+                    light_themes = {
+                        ignore = true,
+                        keywords = { "light", "day", "frappe" }
+                    },
+
+                    -- (table)
+                    -- (boolean) ignore -> toggle ignore dark themes
+                    -- (list) keywords -> list of keywords that would identify as dark theme
+                    dark_themes = {
+                        ignore = false,
+                        keywords = { "dark", "night", "black" }
+                    },
+
                     persist = {
                         -- enable persisting last theme choice
                         enabled = true,
@@ -126,6 +142,8 @@ _Example Configuration ( NOT DEFAULT ):_
 |       `ignore`        |            `list` of themes names            |                                                                                                         Ignore specific themes from appearing in the list                                                                                                          |
 |       `persist`       |     `{ enabled: boolean, path: string}`      | - Enable / Disable persisting last theme choice,<br> - Override file path to write your colorscheme command <br> **`WARNING: THIS MUST BE AN EMPTY FILE AS IT WILL BE COMPLETELY OVERWRITTEN`** <br>Default file path : `{root_nvim_config}/lua/current-theme.lua` |
 |      `mappings`       | `{down: string, up: string, accept: string}` |                                                                                 - Add custom mappings for navigating <br>Default: <br>`{down = <Down>, up = <Up>, accept = <CR>}`                                                                                  |
+|    `light_themes`     |     `{ignore: boolean, keywords: list}`      |                                                                                       - toggle ignore light themes, and provide a list of keywords to identify light themes                                                                                        |
+|     `dark_themes`     |     `{ignore: boolean, keywords: list}`      |                                                                                        - toggle ignore light themes, and provide a list of keywords to identify dark themes                                                                                        |
 
 ### IMPORTANT
 
