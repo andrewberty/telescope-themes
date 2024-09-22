@@ -155,4 +155,3 @@ Now you have to require **current-theme.lua** in your init.lua
 ### Credits
 
 - It is inspired by [NvChad's](https://github.com/NvChad/NvChad) theme switcher, but written to work with any configuration.
-  Now you have to require **current-theme.lua** at the end of your init.lua to apply that theme on every startup.
